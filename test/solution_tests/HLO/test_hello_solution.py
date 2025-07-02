@@ -9,9 +9,15 @@ class TestHello():
         with pytest.raises(Exception):
             HelloSolution().hello(1)
 
-    @pytest.mark.parametrize(
+    @pytest.mark.parametrize("input, expected",
+        [
+            ("Chloë", "Hello, Chloë!"),
+            ("Jean-Paul", "Hello, Jean-Paul!"),
+            (5, "Hello, 5"),
+        ]
 
     )
-    def test_hello_doesnt_raise(self):
-        assert HelloSolution().hello("Chloë") == "Hello, Chloë!"
+    def test_hello_doesnt_raise(self, input, expected):
+        assert HelloSolution().hello(input) == expected
+
 
