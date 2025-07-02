@@ -17,5 +17,3 @@ def check_valid_input(input):
 
 
 
-
-
