@@ -5,6 +5,7 @@ class SumSolution:
         return x + y
 
     def check_valid_input():
+        
 
 
 
