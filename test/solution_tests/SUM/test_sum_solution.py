@@ -6,6 +6,7 @@ class TestSum():
         assert SumSolution().compute(1, 2) == 3
 
     def test_sum_raises(self):
-        with pytest.raises(Exception) as e:
+        with pytest.raises(Exception):
             SumSolution().compute(101, -1)
+
 
