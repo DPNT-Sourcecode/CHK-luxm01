@@ -1,4 +1,6 @@
-from solutions.SUM.sum_solution import Solution
+from solutions.SUM.hello_solution import HelloSolution
 import pytest
 
-class TestSum():
+class TestHello():
+    def test_hello():
+        assert HelloSolution().hello("")
