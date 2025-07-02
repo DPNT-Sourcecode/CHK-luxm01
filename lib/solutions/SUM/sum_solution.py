@@ -4,8 +4,9 @@ class SumSolution:
     def compute(self, x, y):
         return x + y
 
-    def check_valid_input():
+    def check_valid_input(input):
         
+
 
 
 
