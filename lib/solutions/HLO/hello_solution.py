@@ -7,8 +7,9 @@ class HelloSolution:
         return f"Hello, {friend_name}!"
     
 # Helpers
-def validate_unicode_string(string):
-    if not isinstance(string, unicode):
+def validate_unicode_string(input):
+    if not isinstance(input, str):
         raise Exception(f"Invalid input {string}. Valid inputs must be unicode strings.")
+
 
 
