@@ -10,6 +10,7 @@ class TestCheckout:
             ("AA", 100),
             ("AAA", 130),
             ("AAAA", 180),
+            ("AAAAA", 200),
             ("AAAAAA", 260),
             ("B", 30),
             ("BB", 45),
@@ -26,7 +27,7 @@ class TestCheckout:
         ],
     )
     def test_checkout_no_error(self, skus, expected):
-        assert CheckoutSolution().checkout(skus) == expected
+        assert expected == CheckoutSolution().checkout(skus) 
 
     @pytest.mark.parametrize(
         "skus, expected",
@@ -38,7 +39,7 @@ class TestCheckout:
     )
     def test_checkout_error(self, skus, expected):
         # unhappy path returns -1
-        assert CheckoutSolution().checkout(skus) == expected
+        assert expected == CheckoutSolution().checkout(skus) 
 
     @pytest.mark.parametrize(
         "sku",
@@ -49,4 +50,5 @@ class TestCheckout:
     def test_validate_checkout_raises(self, sku):
         with pytest.raises(Exception):
             validate_checkout()
+
 

@@ -1,10 +1,11 @@
 import copy
 
 PRICE_TABLE_AND_OFFERS = {
-    "A": {"price": 50, "offers": [{"group_size": 3, "price_per_group": 130}]},
+    "A": {"price": 50, "offers": [{"group_size": 5, "price_per_group": 200}, {"group_size": 3, "price_per_group": 130}]},
     "B": {"price": 30, "offers": [{"group_size": 2, "price_per_group": 45}]},
     "C": {"price": 20, "offers": []},
     "D": {"price": 15, "offers": []},
+    "E": {"price": 40, "offers": [{"group_size": 2, "freebie": "B"}]}
 }
 
 
@@ -47,5 +48,6 @@ def get_total_price(shopping_cart_dict):
                 multiplier = multiplier % group_size
         total += PRICE_TABLE_AND_OFFERS[sku]["price"] * multiplier
     return total
+
 
 
