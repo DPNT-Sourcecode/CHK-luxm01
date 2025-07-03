@@ -51,21 +51,24 @@ class TestCheckout:
             ("M", 15),
             ("N", 40),
             ("NNNM", 120),
-            # ("", ),
-            # ("", ),
-            # ("", ),
-            # ("", ),
-            # ("", ),
-            # ("", ),
-            # ("", ),
-            # ("", ),
-            # ("", ),
-            # ("", ),
-            # ("", ),
-            # ("", ),
-            # ("", ),
-            # ("", ),
-            # ("", ),
+            ("O", 10),
+            ("P", 50),
+            ("PPPPP", 200),
+            ("Q", 30),
+            ("QQQ", 80),
+            ("R", 50),
+            ("RRRQ", 150),
+            ("S", 30),
+            ("T", 20),
+            ("U", 40),
+            ("UUUU", 120),
+            ("V", 50),
+            ("VV", 90),
+            ("VVV", 130),
+            ("W", 20),
+            ("W", 20),
+            ("W", 20),
+            ("W", 20),
         ],
     )
     def test_checkout_no_error(self, skus, expected):
@@ -74,9 +77,9 @@ class TestCheckout:
     @pytest.mark.parametrize(
         "skus, expected",
         [
-            ("Z", -1),
+            ("Ö", -1),
             (1, -1),
-            ("ABCDEFZ", -1),
+            ("ABCDEFÖ", -1),
         ],
     )
     def test_checkout_error(self, skus, expected):
@@ -92,5 +95,6 @@ class TestCheckout:
     def test_validate_checkout_raises(self, sku):
         with pytest.raises(Exception):
             validate_checkout()
+
 
 
