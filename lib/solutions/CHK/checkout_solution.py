@@ -91,6 +91,8 @@ def get_total_price(shopping_cart_dict):
                 relevant_skus[sku]["quantity"] += 1
             else:
                 relevant_skus[sku] = {"quantity": 1, "price": PRICE_TABLE_AND_OFFERS[sku]["price"]}
+    
+    print(f"\n******************* relevant_skus\n{relevant_skus}")
 
     # remove free items from cart
     for sku, number_of_items in shopping_cart_dict.items():
@@ -131,9 +133,3 @@ def get_total_price(shopping_cart_dict):
                     multiplier = multiplier % group_size
         total += PRICE_TABLE_AND_OFFERS[sku]["price"] * multiplier
     return total
-
-
-
-
-
-
