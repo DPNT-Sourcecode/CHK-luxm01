@@ -90,8 +90,11 @@ def get_total_price(shopping_cart_dict):
             relevant_skus[sku] = {"quantity": number_of_items, "price": PRICE_TABLE_AND_OFFERS[sku]["price"]}
     relevant_skus_sorted_by_price = dict(sorted(relevant_skus.items(), key=lambda item: item[1]['price'], reverse=True))
     number_of_n_for_p_groups = int(total_in_by_n_skus_for_p / BUY_N_SKUS_FOR_P["number"])
+    if number_of_n_for_p_groups:
+        shopping_cart_dict[BUY_N_SKUS_FOR_P["code"]] = number_of_n_for_p_groups * BUY_N_SKUS_FOR_P["price"]
     
-
+    for i in range(total_in_by_n_skus_for_p):
+        # remove items from shopping_cart_dict from highest cost to lowest
     
 
     if relevant_skus:
@@ -136,4 +139,5 @@ def get_total_price(shopping_cart_dict):
                     multiplier = multiplier % group_size
         total += PRICE_TABLE_AND_OFFERS[sku]["price"] * multiplier
     return total
+
 
