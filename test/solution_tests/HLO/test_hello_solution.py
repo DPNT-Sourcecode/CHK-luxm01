@@ -8,7 +8,6 @@ class TestHello():
     @pytest.mark.parametrize("input",
     [
         (1),
-        (❌)
     ]
     )
     def test_hello_raises(self, input):
@@ -25,3 +24,4 @@ class TestHello():
     )
     def test_hello_doesnt_raise(self, input, expected):
         assert HelloSolution().hello(input) == expected
+
