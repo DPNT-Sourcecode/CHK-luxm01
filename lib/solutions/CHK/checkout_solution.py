@@ -30,12 +30,17 @@ def validate_checkout(sku):
 def get_total_price(shopping_cart_dict):
     print(f"shopping_cart_dict ************** {shopping_cart_dict}")
     total = 0
-    for k, v in shopping_cart_dict.items():
-        offer = PRICE_TABLE_AND_OFFERS[k]["offer"]
+    for sku, number_of_items in shopping_cart_dict.items():
+        multiplier = number_of_items
+        offer = PRICE_TABLE_AND_OFFERS[sku]["offer"]
         if offer:
-            offer.keys
-        total += PRICE_TABLE_AND_OFFERS[k]["price"] * v
+            group_size = offer.keys()[0]
+            price_per_group = offer.values()[0]
+            
+
+        total += PRICE_TABLE_AND_OFFERS[sku]["price"] * multiplier
     return total
+
 
 
 
