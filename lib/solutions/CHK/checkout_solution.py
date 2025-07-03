@@ -1,5 +1,9 @@
 import copy
 
+BUY_N_SKUS_FOR_P = {"skus": "STXYZ", "number": 3, "price": 45, "code": 1}
+
+
+
 PRICE_TABLE_AND_OFFERS = {
     "A": {
         "price": 50,
@@ -126,6 +130,7 @@ def get_total_price(shopping_cart_dict):
                     multiplier = multiplier % group_size
         total += PRICE_TABLE_AND_OFFERS[sku]["price"] * multiplier
     return total
+
 
 
 
