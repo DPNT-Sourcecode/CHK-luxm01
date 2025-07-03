@@ -2,8 +2,6 @@ import copy
 
 BUY_N_SKUS_FOR_P = {"skus": "STXYZ", "number": 3, "price": 45, "code": "1"}
 
-
-
 PRICE_TABLE_AND_OFFERS = {
     "A": {
         "price": 50,
@@ -52,7 +50,7 @@ PRICE_TABLE_AND_OFFERS = {
     "1": {"price": 45, "offers": []}
 }
 
-BUY_N_SKUS_FOR_P = {"skus": "STXYZ", "number": 3, "price": 45}
+
 
 
 class CheckoutSolution:
@@ -91,7 +89,10 @@ def get_total_price(shopping_cart_dict):
             total_in_by_n_skus_for_p += 1
             relevant_skus[sku] = {"quantity": number_of_items, "price": PRICE_TABLE_AND_OFFERS[sku]["price"]}
     relevant_skus_sorted_by_price = dict(sorted(relevant_skus.items(), key=lambda item: item[1]['price'], reverse=True))
-    number_of_
+    number_of_n_for_p_groups = int(total_in_by_n_skus_for_p / BUY_N_SKUS_FOR_P["number"])
+    
+
+    
 
     if relevant_skus:
         print(f"\n******************* relevant_skus_sorted_by_price:\n{relevant_skus_sorted_by_price}")
@@ -135,3 +136,4 @@ def get_total_price(shopping_cart_dict):
                     multiplier = multiplier % group_size
         total += PRICE_TABLE_AND_OFFERS[sku]["price"] * multiplier
     return total
+
