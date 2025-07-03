@@ -13,6 +13,26 @@ PRICE_TABLE_AND_OFFERS = {
     "D": {"price": 15, "offers": []},
     "E": {"price": 40, "offers": [{"group_size": 2, "freebie": "B"}]},
     "F": {"price": 10, "offers": [{"group_size": 2, "freebie": "F"}]},
+| "G": {"price"20    |                        |
+| "H": {"price"10    | 5H for 45, 10H for 80  |
+| "I": {"price"35    |                        |
+| "J": {"price"60    |                        |
+| "K": {"price"80    | 2K for 150             |
+| "L": {"price"90    |                        |
+| "M": {"price"15    |                        |
+| "N": {"price"40    | 3N get one M free      |
+| "O": {"price"10    |                        |
+| "P": {"price"50    | 5P for 200             |
+| "Q": {"price"30    | 3Q for 80              |
+| "R": {"price"50    | 3R get one Q free      |
+| "S": {"price"30    |                        |
+| "T": {"price"20    |                        |
+| "U": {"price"40    | 3U get one U free      |
+| "V": {"price"50    | 2V for 90, 3V for 130  |
+| "W": {"price"20    |                        |
+| "X": {"price"90    |                        |
+| "Y": {"price"10    |                        |
+| "Z": {"price"50    |                        |
 }
 
 
@@ -83,3 +103,4 @@ def get_total_price(shopping_cart_dict):
                     multiplier = multiplier % group_size
         total += PRICE_TABLE_AND_OFFERS[sku]["price"] * multiplier
     return total
+
