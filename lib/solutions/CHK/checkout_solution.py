@@ -1,5 +1,3 @@
-import copy
-
 BUY_N_SKUS_FOR_P = {"skus": "STXYZ", "number": 3, "price": 45, "code": "1"}
 
 PRICE_TABLE_AND_OFFERS = {
@@ -47,10 +45,8 @@ PRICE_TABLE_AND_OFFERS = {
     "X": {"price": 90, "offers": []},
     "Y": {"price": 10, "offers": []},
     "Z": {"price": 50, "offers": []},
-    "1": {"price": BUY_N_SKUS_FOR_P["price"], "offers": []}
+    "1": {"price": BUY_N_SKUS_FOR_P["price"], "offers": []},
 }
-
-
 
 
 class CheckoutSolution:
@@ -87,19 +83,26 @@ def get_total_price(shopping_cart_dict):
     for sku, number_of_items in shopping_cart_dict.items():
         if sku in BUY_N_SKUS_FOR_P["skus"]:
             total_in_by_n_skus_for_p += 1
-            relevant_skus[sku] = {"quantity": number_of_items, "price": PRICE_TABLE_AND_OFFERS[sku]["price"]}
-    relevant_skus_sorted_by_price = dict(sorted(relevant_skus.items(), key=lambda item: item[1]['price'], reverse=True))
-    number_of_n_for_p_groups = int(total_in_by_n_skus_for_p / BUY_N_SKUS_FOR_P["number"])
+            relevant_skus[sku] = {
+                "quantity": number_of_items,
+                "price": PRICE_TABLE_AND_OFFERS[sku]["price"],
+            }
+    relevant_skus_sorted_by_price = dict(
+        sorted(relevant_skus.items(), key=lambda item: item[1]["price"], reverse=True)
+    )
+    number_of_n_for_p_groups = int(
+        total_in_by_n_skus_for_p / BUY_N_SKUS_FOR_P["number"]
+    )
     if number_of_n_for_p_groups:
         shopping_cart_dict[BUY_N_SKUS_FOR_P["code"]] = number_of_n_for_p_groups
-    
+
         for sku, quantity_price in relevant_skus_sorted_by_price.items():
             if total_in_by_n_skus_for_p == 0:
                 break
             if shopping_cart_dict.get(sku):
                 shopping_cart_dict[sku] -= 1
-            total_in_by_n_skus_for_p -=1
-    
+            total_in_by_n_skus_for_p -= 1
+
     print(f"\n\n********************* shopping_cart_dict:\n {shopping_cart_dict}")
 
     # if relevant_skus:
@@ -107,7 +110,7 @@ def get_total_price(shopping_cart_dict):
 
     # remove free items from cart
     for sku, number_of_items in shopping_cart_dict.items():
-        multiplier = copy.deepcopy(number_of_items)  # deepcopy might be overkill
+        multiplier = number_of_items
         offers = PRICE_TABLE_AND_OFFERS.get(sku).get("offers")
         for offer in offers:
             group_size = offer.get("group_size")
@@ -133,7 +136,7 @@ def get_total_price(shopping_cart_dict):
     # apply bulk discounts
     for sku, number_of_items in shopping_cart_dict.items():
 
-        multiplier = copy.deepcopy(number_of_items)  # deepcopy might be overkill
+        multiplier = number_of_items
         offers = PRICE_TABLE_AND_OFFERS.get(sku).get("offers")
         if offers:
             for offer in offers:
@@ -141,11 +144,16 @@ def get_total_price(shopping_cart_dict):
                 price_per_group = offer.get("price_per_group")
                 number_of_groups = int(multiplier / group_size)
                 if price_per_group:
-                    print(f"total: {total}, sku: {sku}, number_of_items: {number_of_items}, number_of_groups: {number_of_groups} price_per_group: {price_per_group}")
+                    print(
+                        f"total: {total}, sku: {sku}, number_of_items: {number_of_items}, number_of_groups: {number_of_groups} price_per_group: {price_per_group}"
+                    )
                     total += number_of_groups * price_per_group
                     print(f"new total = {total}")
                     multiplier = multiplier % group_size
-        print(f"total: {total}, sku: {sku}, multiplier: {multiplier}, price: {PRICE_TABLE_AND_OFFERS[sku]["price"]}")
+        print(
+            f"total: {total}, sku: {sku}, multiplier: {multiplier}, price: {PRICE_TABLE_AND_OFFERS[sku]["price"]}"
+        )
         total += PRICE_TABLE_AND_OFFERS[sku]["price"] * multiplier
         print(f"new total = {total}")
     return total
+
