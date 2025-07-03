@@ -103,14 +103,14 @@ def get_total_price(shopping_cart_dict):
 
         print(f"\n===begin iterating over relevant_skus_sorted_by_price===")
         for sku, quantity_price in relevant_skus_sorted_by_price.items():
-            print(f"\nsku: {sku}\nnumber_of_discounted_items: {number_of_discounted_items}, \nbefore: {shopping_cart_dict[sku]}")
+            print(f"\nsku: {sku}\nnumber_of_discounted_items: {number_of_discounted_items}, \nquantity before: {shopping_cart_dict[sku]}")
             if number_of_discounted_items == 0:
                 break
             if shopping_cart_dict.get(sku):
                 print(f"quantity_price: {quantity_price}")
                 shopping_cart_dict[sku] -= min(number_of_discounted_items, quantity_price["quantity"])
-                print(f"after: {shopping_cart_dict[sku]}")
-            number_of_discounted_items -= 1
+                print(f"quantity after: {shopping_cart_dict[sku]}")
+            number_of_discounted_items -= min(number_of_discounted_items, quantity_price["quantity"])
             
 
 
@@ -163,3 +163,4 @@ def get_total_price(shopping_cart_dict):
         total += PRICE_TABLE_AND_OFFERS[sku]["price"] * multiplier
         print(f"new total = {total}")
     return total
+
