@@ -1,3 +1,5 @@
+import copy
+
 PRICE_TABLE_AND_OFFERS = {
     "A": {"price": 50}, "offer": {3: 130},
     "B": {"price": 30}, "offer": {2: 45},
@@ -31,7 +33,7 @@ def get_total_price(shopping_cart_dict):
     print(f"shopping_cart_dict ************** {shopping_cart_dict}")
     total = 0
     for sku, number_of_items in shopping_cart_dict.items():
-        multiplier = number_of_items
+        multiplier = copy.deepcopy(number_of_items) # deepcopy might be overkill
         offer = PRICE_TABLE_AND_OFFERS[sku]["offer"]
         if offer:
             group_size = offer.keys()[0]
@@ -40,6 +42,7 @@ def get_total_price(shopping_cart_dict):
 
         total += PRICE_TABLE_AND_OFFERS[sku]["price"] * multiplier
     return total
+
 
 
 
