@@ -22,7 +22,7 @@ class TestCheckout:
             ("DDD", 45),
             ("ABC", 100),
             ("ABAAD", 175),
-            ("ABCDABCDABCDABCDABCD", 230+120+100+)
+            ("ABCDABCDABCDABCDABCD", 525)
         ],
     )
     def test_checkout_doesnt_raise(self, input, expected):
@@ -31,13 +31,25 @@ class TestCheckout:
     @pytest.mark.parametrize(
         "input",
         [
-            (""),
+            ("E", -1),
         ],
     )
     def test_checkout_raises(self, input):
         # unhappy path returns -1
         with pytest.raises(Exception):
             CheckoutSolution().checkout(input)
+
+    @pytest.mark.parametrize(
+        "input",
+        [
+            ("E"),
+        ],
+    )
+    def test_checkout_raises(self, input):
+        # unhappy path returns -1
+        with pytest.raises(Exception):
+            CheckoutSolution().checkout(input)
+
 
 
 
