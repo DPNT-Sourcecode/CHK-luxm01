@@ -32,7 +32,8 @@ def get_total_price(shopping_cart_dict):
     print(f"shopping_cart_dict ************** {shopping_cart_dict}")
     total = 0
     for k, v in shopping_cart_dict.items():
-        total = PRICE_TABLE_AND_OFFERS[k]["price"] * v
+        total += PRICE_TABLE_AND_OFFERS[k]["price"] * v
     return total
+
 
 
