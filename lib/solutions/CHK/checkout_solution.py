@@ -140,12 +140,15 @@ def get_total_price(shopping_cart_dict):
                 price_per_group = offer.get("price_per_group")
                 number_of_groups = int(multiplier / group_size)
                 if price_per_group:
-                    print(f"total: {total}, number_of_groups: {number_of_groups} price_per_group: {price_per_group}")
+                    print(f"total: {total}, sku: {sku}, number_of_items: {number_of_items}, number_of_groups: {number_of_groups} price_per_group: {price_per_group}")
                     total += number_of_groups * price_per_group
                     print(f"new total = {total}")
                     multiplier = multiplier % group_size
+        print(f"total: {total}, sku: {sku}, multiplier: {multiplier}, price: {PRICE_TABLE_AND_OFFERS[sku]["price"]}")
         total += PRICE_TABLE_AND_OFFERS[sku]["price"] * multiplier
+        print(f"new total = {total}")
     return total
+
 
 
 
