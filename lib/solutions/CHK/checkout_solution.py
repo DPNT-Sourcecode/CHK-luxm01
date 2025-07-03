@@ -47,7 +47,7 @@ PRICE_TABLE_AND_OFFERS = {
     "X": {"price": 90, "offers": []},
     "Y": {"price": 10, "offers": []},
     "Z": {"price": 50, "offers": []},
-    "1": {"price": 45, "offers": []}
+    "1": {"price": BUY_N_SKUS_FOR_P["price"], "offers": []}
 }
 
 
@@ -93,8 +93,12 @@ def get_total_price(shopping_cart_dict):
     if number_of_n_for_p_groups:
         shopping_cart_dict[BUY_N_SKUS_FOR_P["code"]] = number_of_n_for_p_groups * BUY_N_SKUS_FOR_P["price"]
     
-        for sku, quantity_price
-    
+        for sku, quantity_price in relevant_skus_sorted_by_price.items():
+            if total_in_by_n_skus_for_p == 0:
+                break
+            if shopping_cart_dict.get(sku):
+                shopping_cart_dict[sku] -= 1
+            total_in_by_n_skus_for_p -=1
 
     if relevant_skus:
         print(f"\n******************* relevant_skus_sorted_by_price:\n{relevant_skus_sorted_by_price}")
@@ -138,6 +142,7 @@ def get_total_price(shopping_cart_dict):
                     multiplier = multiplier % group_size
         total += PRICE_TABLE_AND_OFFERS[sku]["price"] * multiplier
     return total
+
 
 
 
