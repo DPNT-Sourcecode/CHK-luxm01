@@ -50,7 +50,8 @@ def get_total_price(shopping_cart_dict):
                 amount_of_freebie_items_in_cart = shopping_cart_dict.get(freebie)
                 if amount_of_freebie_items_in_cart:
                     if freebie == sku:
-                        
+                        # number of items to charge for is
+                        pass
                     else:    
                         shopping_cart_dict[freebie] -= number_of_groups
                         if shopping_cart_dict[freebie] < 0:
@@ -70,6 +71,7 @@ def get_total_price(shopping_cart_dict):
                     multiplier = multiplier % group_size
         total += PRICE_TABLE_AND_OFFERS[sku]["price"] * multiplier
     return total
+
 
 
 
