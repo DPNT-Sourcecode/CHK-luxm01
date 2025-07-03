@@ -8,7 +8,7 @@ class TestCheckout:
         [
             ("A", 50),
             ("AA", 100),
-            # ("AAA", 130),
+            ("AAA", 130),
             # ("AAAA", 180),
             # ("AAAAAA", 260),
             ("B", 30),
@@ -49,5 +49,3 @@ class TestCheckout:
     def test_validate_checkout_raises(self, sku):
         with pytest.raises(Exception):
             validate_checkout()
-
-

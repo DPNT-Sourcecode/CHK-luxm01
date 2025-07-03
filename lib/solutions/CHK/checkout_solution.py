@@ -1,10 +1,10 @@
 import copy
 
 PRICE_TABLE_AND_OFFERS = {
-    "A": {"price": 50}, "offer": {3: 130},
-    "B": {"price": 30}, "offer": {2: 45},
-    "C": {"price": 20}, "offer": {},
-    "D": {"price": 15}, "offer": {},
+    "A": {"price": 50, "offer": {3: 130}},
+    "B": {"price": 30, "offer": {2: 45}},
+    "C": {"price": 20, "offer": {}},
+    "D": {"price": 15, "offer": {}},
 }
 
 class CheckoutSolution:
@@ -31,11 +31,10 @@ def validate_checkout(sku):
     return True
 
 def get_total_price(shopping_cart_dict):
-    print(f"shopping_cart_dict ************** {shopping_cart_dict}")
     total = 0
     for sku, number_of_items in shopping_cart_dict.items():
         multiplier = copy.deepcopy(number_of_items) # deepcopy might be overkill
-        offer = PRICE_TABLE_AND_OFFERS[sku]["offer"]
+        offer = PRICE_TABLE_AND_OFFERS.get(sku).get("offer")
         if offer:
             group_size = offer.keys()[0]
             price_per_group = offer.values()[0]
@@ -44,12 +43,4 @@ def get_total_price(shopping_cart_dict):
             multiplier = multiplier % group_size
         total += PRICE_TABLE_AND_OFFERS[sku]["price"] * multiplier
     return total
-
-
-
-
-
-
-
-
 
