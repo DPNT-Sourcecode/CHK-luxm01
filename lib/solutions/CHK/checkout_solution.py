@@ -6,7 +6,6 @@ PRICE_TABLE_AND_OFFERS = {
 }
 
 class CheckoutSolution:
-
     # skus = unicode string
     def checkout(self, skus):
         total = 0
@@ -34,6 +33,7 @@ def get_total_price(shopping_cart_dict):
     for k, v in shopping_cart_dict.items():
         total += PRICE_TABLE_AND_OFFERS[k]["price"] * v
     return total
+
 
 
 
