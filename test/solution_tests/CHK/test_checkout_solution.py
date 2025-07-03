@@ -61,6 +61,7 @@ class TestCheckout:
             ("S", 30),
             ("T", 20),
             ("U", 40),
+            ("UUU", 120),
             ("UUUU", 120),
             ("V", 50),
             ("VV", 90),
@@ -95,7 +96,3 @@ class TestCheckout:
     def test_validate_checkout_raises(self, sku):
         with pytest.raises(Exception):
             validate_checkout()
-
-
-
-
