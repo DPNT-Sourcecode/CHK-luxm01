@@ -53,8 +53,8 @@ def get_total_price(shopping_cart_dict):
                         pass
                         items_to_deduct = 0
                         for i in range(amount_of_freebie_items_in_cart):
-
-                            if i+2 % group_size == 1:
+                            actual_item_number = i+1
+                            if actual_item_number != 1 and actual_item_number % group_size == 1:
                                 items_to_deduct += 1
                         shopping_cart_dict[freebie] -= items_to_deduct
                     else:    
@@ -76,4 +76,5 @@ def get_total_price(shopping_cart_dict):
                     multiplier = multiplier % group_size
         total += PRICE_TABLE_AND_OFFERS[sku]["price"] * multiplier
     return total
+
 
