@@ -89,8 +89,6 @@ def get_total_price(shopping_cart_dict):
         if sku in BUY_N_SKUS_FOR_P["skus"]:
             relevant_skus[sku] = {"quantity": number_of_items, "price": PRICE_TABLE_AND_OFFERS[sku]["price"]}
     relevant_skus_sorted_by_price = dict(sorted(relevant_skus.items(), key=lambda item: item[1]['price'], reverse=True))
-    
-    for sku, quantity_price in relevant_skus_sorted_by_price:
 
     if relevant_skus:
         print(f"\n******************* relevant_skus_sorted_by_price:\n{relevant_skus_sorted_by_price}")
@@ -134,6 +132,7 @@ def get_total_price(shopping_cart_dict):
                     multiplier = multiplier % group_size
         total += PRICE_TABLE_AND_OFFERS[sku]["price"] * multiplier
     return total
+
 
 
 
