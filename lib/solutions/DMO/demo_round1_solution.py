@@ -11,4 +11,3 @@ class DemoRound1Solution:
 
     def count_lines(self, multiline_text):
         raise NotImplementedError()
-

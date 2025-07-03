@@ -9,4 +9,3 @@ class TestSum:
     def test_sum_raises(self):
         with pytest.raises(Exception):
             SumSolution().compute(101, -1)
-
