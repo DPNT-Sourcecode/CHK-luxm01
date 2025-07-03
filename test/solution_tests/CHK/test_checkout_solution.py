@@ -31,27 +31,45 @@ class TestCheckout:
             ("EEEEBB", 160),
             ("BEBEEE", 160),
             ("ABCDEABCDE", 280),
-            ("F", 10),      # buy 1, pay for 1
-            ("FF", 20),     # buy 2, pay for 2
-            ("FFF", 20),    # buy 3, pay for 2
-            ("FFFF", 30),   # buy 4, pay for 3
+            ("F", 10),  # buy 1, pay for 1
+            ("FF", 20),  # buy 2, pay for 2
+            ("FFF", 20),  # buy 3, pay for 2
+            ("FFFF", 30),  # buy 4, pay for 3
             ("FFFFF", 40),  # buy 5, pay for 4
-            ("FFFFFF", 40), # buy 6, pay for 4
-            ("FFFFFFF", 50), # buy 7, pay for 5
-            ("FFFFFFFF", 60), # buy 8, pay for 56
-            ("G": 20),
-            ("H": 10),
-            ("HHHHH": 45),
+            ("FFFFFF", 40),  # buy 6, pay for 4
+            ("FFFFFFF", 50),  # buy 7, pay for 5
+            ("FFFFFFFF", 60),  # buy 8, pay for 56
+            ("G", 20),
+            ("H", 10),
+            ("HHHHH", 45),
             ("HHHHHHHHHH", 80),
-            ("I": 35),
-            ("J": 60),
+            ("I", 35),
+            ("J", 60),
             ("K", 80),
             ("KK", 150),
-            ("")
+            ("L", 90),
+            ("M", 15),
+            ("N", 40),
+            ("NNNM", 120),
+            # ("", ),
+            # ("", ),
+            # ("", ),
+            # ("", ),
+            # ("", ),
+            # ("", ),
+            # ("", ),
+            # ("", ),
+            # ("", ),
+            # ("", ),
+            # ("", ),
+            # ("", ),
+            # ("", ),
+            # ("", ),
+            # ("", ),
         ],
     )
     def test_checkout_no_error(self, skus, expected):
-        assert expected == CheckoutSolution().checkout(skus) 
+        assert expected == CheckoutSolution().checkout(skus)
 
     @pytest.mark.parametrize(
         "skus, expected",
@@ -63,7 +81,7 @@ class TestCheckout:
     )
     def test_checkout_error(self, skus, expected):
         # unhappy path returns -1
-        assert expected == CheckoutSolution().checkout(skus) 
+        assert expected == CheckoutSolution().checkout(skus)
 
     @pytest.mark.parametrize(
         "sku",
@@ -74,4 +92,5 @@ class TestCheckout:
     def test_validate_checkout_raises(self, sku):
         with pytest.raises(Exception):
             validate_checkout()
+
 
