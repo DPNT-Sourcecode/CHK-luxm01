@@ -4,17 +4,17 @@ import pytest
 
 class TestHello:
     @pytest.mark.parametrize(
-        "input",
+        "name",
         [
             (1),
         ],
     )
-    def test_hello_raises(self, input):
+    def test_hello_raises(self, name):
         with pytest.raises(Exception):
-            HelloSolution().hello(input)
+            HelloSolution().hello(name)
 
     @pytest.mark.parametrize(
-        "input, expected",
+        "name, expected",
         [
             ("John", "Hello, John!"),
             ("Chloë", "Hello, Chloë!"),
@@ -22,5 +22,6 @@ class TestHello:
             ("5", "Hello, 5!"),
         ],
     )
-    def test_hello_doesnt_raise(self, input, expected):
-        assert HelloSolution().hello(input) == expected
+    def test_hello_doesnt_raise(self, name, expected):
+        assert HelloSolution().hello(name) == expected
+

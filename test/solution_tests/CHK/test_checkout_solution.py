@@ -26,28 +26,29 @@ class TestCheckout:
         ],
     )
     def test_checkout_doesnt_no_error(self, skus, expected):
-        assert CheckoutSolution().checkout(input) == expected
+        assert CheckoutSolution().checkout(skus) == expected
 
     @pytest.mark.parametrize(
-        "input, expected",
+        "skus, expected",
         [
             ("E", -1),
             (1, -1),
             ("ABCDE", -1),
         ],
     )
-    def test_checkout_error(self, input, expected):
+    def test_checkout_error(self, skus, expected):
         # unhappy path returns -1
-        assert CheckoutSolution().checkout(input) == expected
+        assert CheckoutSolution().checkout(skus) == expected
 
     @pytest.mark.parametrize(
-        "input",
+        "sku",
         [
             ("E"),
         ],
     )
-    def test_validate_checkout_raises(self, input):
+    def test_validate_checkout_raises(self, sku):
         with pytest.raises(Exception):
             validate_checkout()
+
 
 

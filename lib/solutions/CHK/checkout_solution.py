@@ -5,10 +5,11 @@ class CheckoutSolution:
         try:
             for sku in skus:
                 validate_checkout(sku)
-                print(f"{}")
+                print(f"VALID: {sku}")
         except:
-            print(f"IN EXCEPT BLOCK{skus}")
+            print(f"IN EXCEPT BLOCK {skus}")
             return -1
+        return 50
 
         
 
@@ -17,6 +18,7 @@ def validate_checkout(sku):
     if sku not in valid_inputs:
         raise Exception(f"Invalid input: {input}. Valid inputs = {valid_inputs}")
     return True
+
 
 
 
