@@ -36,6 +36,18 @@ def validate_checkout(sku):
 
 def get_total_price(shopping_cart_dict):
     total = 0
+    
+    for sku, number_of_items in shopping_cart_dict.items():
+        offers = PRICE_TABLE_AND_OFFERS.get(sku).get("offers")
+        freebie = offer.get("freebie")
+            if freebie:
+                free_item_listing_in_cart = shopping_cart_dict.get(freebie)
+                if free_item_listing_in_cart:
+                    shopping_cart_dict[freebie] -= number_of_groups
+                    if shopping_cart_dict[freebie] < 0:
+                        shopping_cart_dict[freebie] = 0
+                    # import pdb; pdb.set_trace()
+
     for sku, number_of_items in shopping_cart_dict.items():
         multiplier = copy.deepcopy(number_of_items)  # deepcopy might be overkill
         offers = PRICE_TABLE_AND_OFFERS.get(sku).get("offers")
@@ -47,21 +59,5 @@ def get_total_price(shopping_cart_dict):
                 if price_per_group:
                     total += number_of_groups * price_per_group
                     multiplier = multiplier % group_size
-                freebie = offer.get("freebie")
-                if freebie:
-                    free_item_listing_in_cart = shopping_cart_dict.get(freebie)
-                    if free_item_listing_in_cart:
-                        shopping_cart_dict[freebie] -= number_of_groups
-                        if shopping_cart_dict[freebie] < 0:
-                            shopping_cart_dict[freebie] = 0
-                        # import pdb; pdb.set_trace()
         total += PRICE_TABLE_AND_OFFERS[sku]["price"] * multiplier
     return total
-
-
-
-
-
-
-
-
