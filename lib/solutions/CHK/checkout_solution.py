@@ -40,10 +40,10 @@ def get_total_price(shopping_cart_dict):
     # first pass, remove free items from cart
     for sku, number_of_items in shopping_cart_dict.items():
         multiplier = copy.deepcopy(number_of_items)  # deepcopy might be overkill
-        
-        number_of_groups = int(multiplier / group_size)
         offers = PRICE_TABLE_AND_OFFERS.get(sku).get("offers")
         for offer in offers:
+            group_size = offer.get("group_size")
+            number_of_groups = int(multiplier / group_size)
             freebie = offer.get("freebie")
             if freebie:
                 free_item_listing_in_cart = shopping_cart_dict.get(freebie)
@@ -51,7 +51,6 @@ def get_total_price(shopping_cart_dict):
                     shopping_cart_dict[freebie] -= number_of_groups
                     if shopping_cart_dict[freebie] < 0:
                         shopping_cart_dict[freebie] = 0
-                    # import pdb; pdb.set_trace()
 
     # second pass, apply bulk discounts
     for sku, number_of_items in shopping_cart_dict.items():
@@ -67,4 +66,5 @@ def get_total_price(shopping_cart_dict):
                     multiplier = multiplier % group_size
         total += PRICE_TABLE_AND_OFFERS[sku]["price"] * multiplier
     return total
+
 
