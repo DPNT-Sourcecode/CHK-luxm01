@@ -52,9 +52,11 @@ def get_total_price(shopping_cart_dict):
                     free_item_listing_in_cart = shopping_cart_dict.get(freebie)
                     if free_item_listing_in_cart:
                         # import pdb; pdb.set_trace()
-                        total -= number_of_groups * free_item_listing_in_cart
+                        discount_per_unit = PRICE_TABLE_AND_OFFERS[freebie]["price"]
+                        total -= number_of_groups * 
         total += PRICE_TABLE_AND_OFFERS[sku]["price"] * multiplier
     return total
+
 
 
 
