@@ -5,7 +5,8 @@ PRICE_TABLE_AND_OFFERS = {
     "B": {"price": 30, "offers": [{"group_size": 2, "price_per_group": 45}]},
     "C": {"price": 20, "offers": []},
     "D": {"price": 15, "offers": []},
-    "E": {"price": 40, "offers": [{"group_size": 2, "freebie": "B"}]}
+    "E": {"price": 40, "offers": [{"group_size": 2, "freebie": "B"}]},
+    "F": {"price": 10, "offers": [{"group_size": 2, "freebie": "F"}]}
 }
 
 
@@ -66,5 +67,6 @@ def get_total_price(shopping_cart_dict):
                     multiplier = multiplier % group_size
         total += PRICE_TABLE_AND_OFFERS[sku]["price"] * multiplier
     return total
+
 
 
