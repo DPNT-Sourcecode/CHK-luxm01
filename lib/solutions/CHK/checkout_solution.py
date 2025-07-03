@@ -107,7 +107,6 @@ def get_total_price(shopping_cart_dict):
 
     # remove free items from cart
     for sku, number_of_items in shopping_cart_dict.items():
-            print(f"\n\n********************* shopping_cart_dict:\n {shopping_cart_dict}")
         multiplier = copy.deepcopy(number_of_items)  # deepcopy might be overkill
         offers = PRICE_TABLE_AND_OFFERS.get(sku).get("offers")
         for offer in offers:
@@ -141,10 +140,13 @@ def get_total_price(shopping_cart_dict):
                 price_per_group = offer.get("price_per_group")
                 number_of_groups = int(multiplier / group_size)
                 if price_per_group:
+                    print(f"total: {total}, number_of_groups: {number_of_groups} price_per_group: {price_per_group}")
                     total += number_of_groups * price_per_group
+                    print(f"new total = {total}")
                     multiplier = multiplier % group_size
         total += PRICE_TABLE_AND_OFFERS[sku]["price"] * multiplier
     return total
+
 
 
 
