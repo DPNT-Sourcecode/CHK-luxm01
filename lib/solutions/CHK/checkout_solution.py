@@ -108,7 +108,7 @@ def get_total_price(shopping_cart_dict):
                 break
             if shopping_cart_dict.get(sku):
                 print(f"quantity_price: {quantity_price}")
-                shopping_cart_dict[sku] -= quantity_price["quantity"]
+                shopping_cart_dict[sku] -= min(number_of_discounted_items, quantity_price["quantity"])
                 print(f"after: {shopping_cart_dict[sku]}")
             number_of_discounted_items -= 1
             
@@ -163,8 +163,3 @@ def get_total_price(shopping_cart_dict):
         total += PRICE_TABLE_AND_OFFERS[sku]["price"] * multiplier
         print(f"new total = {total}")
     return total
-
-
-
-
-
