@@ -26,7 +26,7 @@ class TestCheckout:
             ("ABCDABCDABCDABCDABCD", 525),
         ],
     )
-    def test_checkout_doesnt_raise(self, input, expected):
+    def test_checkout_doesnt_no_error(self, input, expected):
         assert CheckoutSolution().checkout(input) == expected
 
     @pytest.mark.parametrize(
@@ -35,10 +35,9 @@ class TestCheckout:
             ("E", -1),
         ],
     )
-    def test_checkout_raises(self, input):
+    def test_checkout_error(self, input):
         # unhappy path returns -1
-        with pytest.raises(Exception):
-            CheckoutSolution().checkout(input)
+        assert CheckoutSolution().checkout(input) == expected
 
     @pytest.mark.parametrize(
         "input",
@@ -49,3 +48,4 @@ class TestCheckout:
     def test_validate_checkout_raises(self, input):
         with pytest.raises(Exception):
             validate_checkout()
+
