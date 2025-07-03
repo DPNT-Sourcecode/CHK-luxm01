@@ -1,12 +1,18 @@
 import copy
 
 PRICE_TABLE_AND_OFFERS = {
-    "A": {"price": 50, "offers": [{"group_size": 5, "price_per_group": 200}, {"group_size": 3, "price_per_group": 130}]},
+    "A": {
+        "price": 50,
+        "offers": [
+            {"group_size": 5, "price_per_group": 200},
+            {"group_size": 3, "price_per_group": 130},
+        ],
+    },
     "B": {"price": 30, "offers": [{"group_size": 2, "price_per_group": 45}]},
     "C": {"price": 20, "offers": []},
     "D": {"price": 15, "offers": []},
     "E": {"price": 40, "offers": [{"group_size": 2, "freebie": "B"}]},
-    "F": {"price": 10, "offers": [{"group_size": 2, "freebie": "F"}]}
+    "F": {"price": 10, "offers": [{"group_size": 2, "freebie": "F"}]},
 }
 
 
@@ -53,16 +59,21 @@ def get_total_price(shopping_cart_dict):
                         pass
                         items_to_deduct = 0
                         for i in range(amount_of_freebie_items_in_cart):
-                            actual_item_number = i+1
+                            actual_item_number = i + 1
                             print(actual_item_number)
                             not_one = actual_item_number != 1
                             discount_condition = actual_item_number % group_size == 1
-                            not_last_item_in_cart = actual_item_number < amount_of_freebie_items_in_cart
-                            if not_one and discount_condition and not_last_item_in_cart:
+                            not_last_item_in_cart = (
+                                actual_item_number < amount_of_freebie_items_in_cart
+                            )
+                            is_first_discounted_item = i + 1 == group_size + 1
+                            if is_first_discounted_item or (
+                                not_one and discount_condition and not_last_item_in_cart
+                            ):
                                 print("deducting")
                                 items_to_deduct += 1
                         shopping_cart_dict[freebie] -= items_to_deduct
-                    else:    
+                    else:
                         shopping_cart_dict[freebie] -= number_of_groups
                         if shopping_cart_dict[freebie] < 0:
                             shopping_cart_dict[freebie] = 0
@@ -81,6 +92,7 @@ def get_total_price(shopping_cart_dict):
                     multiplier = multiplier % group_size
         total += PRICE_TABLE_AND_OFFERS[sku]["price"] * multiplier
     return total
+
 
 
 
