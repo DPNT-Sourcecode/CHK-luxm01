@@ -10,26 +10,25 @@ class CheckoutSolution:
     # skus = unicode string
     def checkout(self, skus):
         total = 0
-        items = 
+        shopping_cart_dict = {}
         try:
             for sku in skus:
                 validate_checkout(sku)
+                if shopping_cart_dict.get(sku):
+                    shopping_cart_dict[sku] += 1
+                else:
+                    shopping_cart_dict[sku] = 1
             return 50
         except:
             return -1
         
-
-        
-
 def validate_checkout(sku):
     valid_inputs = ["A", "B", "C", "D"]
     if sku not in valid_inputs:
         raise Exception(f"Invalid input: {input}. Valid inputs = {valid_inputs}")
     return True
 
-
-
-
-
-
+def get_total_price(shopping_cart_dict):
+    for k, v in shopping_cart_dict.items():
+        PRICE_TABLE_AND_OFFERS[]
 

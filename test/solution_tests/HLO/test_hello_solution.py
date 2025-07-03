@@ -24,4 +24,3 @@ class TestHello:
     )
     def test_hello_doesnt_raise(self, name, expected):
         assert HelloSolution().hello(name) == expected
-

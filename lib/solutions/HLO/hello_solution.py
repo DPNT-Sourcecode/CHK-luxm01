@@ -12,4 +12,3 @@ def validate_unicode_string(string):
         raise Exception(
             f"Invalid input: {string}. Valid inputs must be unicode strings."
         )
-
