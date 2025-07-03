@@ -4,8 +4,10 @@ class CheckoutSolution:
     def checkout(self, skus):
         raise NotImplementedError()
 
+
 def validate_checkout(input):
     valid_inputs = ["A", "B", "C", "D"]
     if input not in valid_inputs:
         raise Exception(f"Invalid input: {input}. Valid inputs = {valid_inputs}")
+
 
