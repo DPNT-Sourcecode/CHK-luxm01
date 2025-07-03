@@ -43,11 +43,13 @@ def get_total_price(shopping_cart_dict):
             for offer in offers:
                 group_size = offer.get("group_size")
                 price_per_group = offer.get("price_per_group")
-                number_of_groups = int(multiplier / group_size)
-                total += number_of_groups * price_per_group
-                multiplier = multiplier % group_size
+                if price_per_group:
+                    number_of_groups = int(multiplier / group_size)
+                    total += number_of_groups * price_per_group
+                    multiplier = multiplier % group_size
         total += PRICE_TABLE_AND_OFFERS[sku]["price"] * multiplier
     return total
+
 
 
 
