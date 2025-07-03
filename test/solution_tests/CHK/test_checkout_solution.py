@@ -100,5 +100,3 @@ class TestCheckout:
     # def test_validate_checkout_raises(self, sku):
     #     with pytest.raises(Exception):
     #         validate_checkout()
-
-
