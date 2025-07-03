@@ -20,7 +20,8 @@ class CheckoutSolution:
                 else:
                     shopping_cart_dict[sku] = 1
             return get_total_price(shopping_cart_dict)
-        except:
+        except Exception as e:
+            print(f"********* FAILED WITH {e} *********")
             return -1
         
 def validate_checkout(sku):
@@ -43,6 +44,7 @@ def get_total_price(shopping_cart_dict):
             multiplier = multiplier % group_size
         total += PRICE_TABLE_AND_OFFERS[sku]["price"] * multiplier
     return total
+
 
 
 
