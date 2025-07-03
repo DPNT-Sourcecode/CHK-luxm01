@@ -79,32 +79,36 @@ def validate_checkout(sku):
 
 
 def get_total_price(shopping_cart_dict):
+
+    deep_copy_shopping_cart_dict = copy.deepcopy(shopping_cart_dict)
     total = 0
 
     # apply buy n skus for p
     relevant_skus = {}
     total_in_by_n_skus_for_p = 0
-    for sku, number_of_items in shopping_cart_dict.items():
+    for sku, number_of_items in deep_copy_shopping_cart_dict.items():
         if sku in BUY_N_SKUS_FOR_P["skus"]:
             total_in_by_n_skus_for_p += 1
             relevant_skus[sku] = {"quantity": number_of_items, "price": PRICE_TABLE_AND_OFFERS[sku]["price"]}
     relevant_skus_sorted_by_price = dict(sorted(relevant_skus.items(), key=lambda item: item[1]['price'], reverse=True))
     number_of_n_for_p_groups = int(total_in_by_n_skus_for_p / BUY_N_SKUS_FOR_P["number"])
     if number_of_n_for_p_groups:
-        shopping_cart_dict[BUY_N_SKUS_FOR_P["code"]] = number_of_n_for_p_groups * BUY_N_SKUS_FOR_P["price"]
+        deep_copy_shopping_cart_dict[BUY_N_SKUS_FOR_P["code"]] = number_of_n_for_p_groups * BUY_N_SKUS_FOR_P["price"]
     
         for sku, quantity_price in relevant_skus_sorted_by_price.items():
             if total_in_by_n_skus_for_p == 0:
                 break
-            if shopping_cart_dict.get(sku):
-                shopping_cart_dict[sku] -= 1
+            if deep_copy_shopping_cart_dict.get(sku):
+                deep_copy_shopping_cart_dict[sku] -= 1
             total_in_by_n_skus_for_p -=1
+    
+    print(f"\n\n********************* deep_copy_shopping_cart_dict:\n {deep_copy_shopping_cart_dict}")
 
     if relevant_skus:
         print(f"\n******************* relevant_skus_sorted_by_price:\n{relevant_skus_sorted_by_price}")
 
     # remove free items from cart
-    for sku, number_of_items in shopping_cart_dict.items():
+    for sku, number_of_items in deep_copy_shopping_cart_dict.items():
         multiplier = copy.deepcopy(number_of_items)  # deepcopy might be overkill
         offers = PRICE_TABLE_AND_OFFERS.get(sku).get("offers")
         for offer in offers:
@@ -112,7 +116,7 @@ def get_total_price(shopping_cart_dict):
             number_of_groups = int(multiplier / group_size)
             freebie = offer.get("freebie")
             if freebie:
-                amount_of_freebie_items_in_cart = shopping_cart_dict.get(freebie)
+                amount_of_freebie_items_in_cart = deep_copy_shopping_cart_dict.get(freebie)
                 if amount_of_freebie_items_in_cart:
                     if freebie == sku:
                         items_to_deduct = 0
@@ -122,14 +126,14 @@ def get_total_price(shopping_cart_dict):
                             if running_total_pay_for == group_size + 1:
                                 items_to_deduct += 1
                                 running_total_pay_for = 0
-                        shopping_cart_dict[freebie] -= items_to_deduct
+                        deep_copy_shopping_cart_dict[freebie] -= items_to_deduct
                     else:
-                        shopping_cart_dict[freebie] -= number_of_groups
-                        if shopping_cart_dict[freebie] < 0:
-                            shopping_cart_dict[freebie] = 0
+                        deep_copy_shopping_cart_dict[freebie] -= number_of_groups
+                        if deep_copy_shopping_cart_dict[freebie] < 0:
+                            deep_copy_shopping_cart_dict[freebie] = 0
 
     # apply bulk discounts
-    for sku, number_of_items in shopping_cart_dict.items():
+    for sku, number_of_items in deep_copy_shopping_cart_dict.items():
         multiplier = copy.deepcopy(number_of_items)  # deepcopy might be overkill
         offers = PRICE_TABLE_AND_OFFERS.get(sku).get("offers")
         if offers:
@@ -142,6 +146,7 @@ def get_total_price(shopping_cart_dict):
                     multiplier = multiplier % group_size
         total += PRICE_TABLE_AND_OFFERS[sku]["price"] * multiplier
     return total
+
 
 
 
