@@ -27,7 +27,10 @@ class TestCheckout:
             ("ABCDABCDABCDABCDABCD", 495),
             ("E", 40),
             ("EE", 80),
-            ("EEB", 80)
+            ("EEB", 80),
+            ("EEEEBB", 160),
+            ("BEBEEE", 160),
+            ("ABCDEABCDE", 280)
         ],
     )
     def test_checkout_no_error(self, skus, expected):
@@ -54,5 +57,6 @@ class TestCheckout:
     def test_validate_checkout_raises(self, sku):
         with pytest.raises(Exception):
             validate_checkout()
+
 
 
