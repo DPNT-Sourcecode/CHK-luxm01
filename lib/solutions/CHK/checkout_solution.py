@@ -91,7 +91,7 @@ def get_total_price(shopping_cart_dict):
     relevant_skus_sorted_by_price = dict(sorted(relevant_skus.items(), key=lambda item: item[1]['price'], reverse=True))
     number_of_n_for_p_groups = int(total_in_by_n_skus_for_p / BUY_N_SKUS_FOR_P["number"])
     if number_of_n_for_p_groups:
-        shopping_cart_dict[BUY_N_SKUS_FOR_P["code"]] = number_of_n_for_p_groups * BUY_N_SKUS_FOR_P["price"]
+        shopping_cart_dict[BUY_N_SKUS_FOR_P["code"]] = number_of_n_for_p_groups
     
         for sku, quantity_price in relevant_skus_sorted_by_price.items():
             if total_in_by_n_skus_for_p == 0:
@@ -132,6 +132,7 @@ def get_total_price(shopping_cart_dict):
 
     # apply bulk discounts
     for sku, number_of_items in shopping_cart_dict.items():
+
         multiplier = copy.deepcopy(number_of_items)  # deepcopy might be overkill
         offers = PRICE_TABLE_AND_OFFERS.get(sku).get("offers")
         if offers:
@@ -148,6 +149,7 @@ def get_total_price(shopping_cart_dict):
         total += PRICE_TABLE_AND_OFFERS[sku]["price"] * multiplier
         print(f"new total = {total}")
     return total
+
 
 
 
