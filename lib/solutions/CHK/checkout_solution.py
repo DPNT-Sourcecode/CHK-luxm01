@@ -76,7 +76,7 @@ def validate_checkout(sku):
 def get_total_price(shopping_cart_dict):
     total = 0
 
-    # first pass, remove free items from cart
+    # remove free items from cart
     for sku, number_of_items in shopping_cart_dict.items():
         multiplier = copy.deepcopy(number_of_items)  # deepcopy might be overkill
         offers = PRICE_TABLE_AND_OFFERS.get(sku).get("offers")
@@ -101,7 +101,7 @@ def get_total_price(shopping_cart_dict):
                         if shopping_cart_dict[freebie] < 0:
                             shopping_cart_dict[freebie] = 0
 
-    # second pass, apply bulk discounts
+    # apply bulk discounts
     for sku, number_of_items in shopping_cart_dict.items():
         multiplier = copy.deepcopy(number_of_items)  # deepcopy might be overkill
         offers = PRICE_TABLE_AND_OFFERS.get(sku).get("offers")
@@ -115,3 +115,4 @@ def get_total_price(shopping_cart_dict):
                     multiplier = multiplier % group_size
         total += PRICE_TABLE_AND_OFFERS[sku]["price"] * multiplier
     return total
+
