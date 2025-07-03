@@ -73,7 +73,7 @@ class TestCheckout:
             ("1", 45),
             ("STX", 45),
             ("XYZ", 45),
-            ("STXYZ", 75),
+            ("STXYZ", 82),
             ("SSSTTT", 90),
             ("SSSTTTXXXYYYZZZ", 225),
         ],
@@ -102,6 +102,7 @@ class TestCheckout:
     def test_validate_checkout_raises(self, sku):
         with pytest.raises(Exception):
             validate_checkout(sku)
+
 
 
 
