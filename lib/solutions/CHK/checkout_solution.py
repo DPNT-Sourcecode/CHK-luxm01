@@ -18,7 +18,7 @@ class CheckoutSolution:
                     shopping_cart_dict[sku] += 1
                 else:
                     shopping_cart_dict[sku] = 1
-            return 50
+            return get_total_price(shopping_cart_dict)
         except:
             return -1
         
@@ -29,6 +29,10 @@ def validate_checkout(sku):
     return True
 
 def get_total_price(shopping_cart_dict):
+    print(f"shopping_cart_dict ************** {shopping_cart_dict}")
+    total = 0
     for k, v in shopping_cart_dict.items():
-        PRICE_TABLE_AND_OFFERS[]
+        total = PRICE_TABLE_AND_OFFERS[k]["price"] * v
+    return total
+
 
