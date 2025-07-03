@@ -23,7 +23,7 @@ PRICE_TABLE_AND_OFFERS = {
     },
     "I": {"price": 35, "offers": []},
     "J": {"price": 60, "offers": []},
-    "K": {"price": 80, "offers": [{"group_size": 2, "price_per_group": 150}]},
+    "K": {"price": 70, "offers": [{"group_size": 2, "price_per_group": 150}]},
     "L": {"price": 90, "offers": []},
     "M": {"price": 15, "offers": []},
     "N": {"price": 40, "offers": [{"group_size": 3, "freebie": "M"}]},
@@ -42,7 +42,7 @@ PRICE_TABLE_AND_OFFERS = {
         ],
     },
     "W": {"price": 20, "offers": []},
-    "X": {"price": 90, "offers": []},
+    "X": {"price": 17, "offers": []},
     "Y": {"price": 10, "offers": []},
     "Z": {"price": 50, "offers": []},
     "1": {"price": BUY_N_SKUS_FOR_P["price"], "offers": []},
@@ -163,5 +163,6 @@ def get_total_price(shopping_cart_dict):
         total += PRICE_TABLE_AND_OFFERS[sku]["price"] * multiplier
         print(f"new total = {total}")
     return total
+
 
 
