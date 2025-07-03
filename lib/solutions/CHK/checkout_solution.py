@@ -99,7 +99,7 @@ def get_total_price(shopping_cart_dict):
     if number_of_n_for_p_groups:
         shopping_cart_dict[BUY_N_SKUS_FOR_P["code"]] = number_of_n_for_p_groups
 
-        if relevant_skus:
+        if relevant_skus_sorted_by_price:
             print(f"\n\nrelevant_skus_sorted_by_price: {relevant_skus_sorted_by_price}")
 
         print(f"\n===begin iterating over relevant_skus_sorted_by_price===")
@@ -153,23 +153,14 @@ def get_total_price(shopping_cart_dict):
                 number_of_groups = int(multiplier / group_size)
                 if price_per_group:
                     print(
-                        f"\ntotal: {total}, \nsku: {sku}, number_of_items: {number_of_items}, number_of_groups: {number_of_groups} price_per_group: {price_per_group}"
+                        f"\nold total: {total}, \nsku: {sku}, number_of_items: {number_of_items}, number_of_groups: {number_of_groups} price_per_group: {price_per_group}"
                     )
                     total += number_of_groups * price_per_group
                     print(f"new total = {total}")
                     multiplier = multiplier % group_size
         print(
-            f"\ntotal: {total}, \nsku: {sku}, multiplier: {multiplier}, price: {PRICE_TABLE_AND_OFFERS[sku]["price"]}"
+            f"\nold total: {total}, \nsku: {sku}, multiplier: {multiplier}, price: {PRICE_TABLE_AND_OFFERS[sku]["price"]}"
         )
         total += PRICE_TABLE_AND_OFFERS[sku]["price"] * multiplier
         print(f"new total = {total}")
     return total
-
-
-
-
-
-
-
-
-
