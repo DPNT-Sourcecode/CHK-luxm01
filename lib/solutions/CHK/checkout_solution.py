@@ -1,6 +1,6 @@
 import copy
 
-BUY_N_SKUS_FOR_P = {"skus": "STXYZ", "number": 3, "price": 45, "code": 1}
+BUY_N_SKUS_FOR_P = {"skus": "STXYZ", "number": 3, "price": 45, "code": "1"}
 
 
 
@@ -49,6 +49,7 @@ PRICE_TABLE_AND_OFFERS = {
     "X": {"price": 90, "offers": []},
     "Y": {"price": 10, "offers": []},
     "Z": {"price": 50, "offers": []},
+    "1": {"price": 45, "offers": []}
 }
 
 BUY_N_SKUS_FOR_P = {"skus": "STXYZ", "number": 3, "price": 45}
@@ -89,7 +90,7 @@ def get_total_price(shopping_cart_dict):
             if relevant_skus.get(sku):
                 relevant_skus[sku]["quantity"] += 1
             else:
-                relevant_skus[sku] = {"quantity": 1}
+                relevant_skus[sku] = {"quantity": 1, "price": PRICE_TABLE_AND_OFFERS[sku]["price"]}
 
     # remove free items from cart
     for sku, number_of_items in shopping_cart_dict.items():
@@ -130,6 +131,7 @@ def get_total_price(shopping_cart_dict):
                     multiplier = multiplier % group_size
         total += PRICE_TABLE_AND_OFFERS[sku]["price"] * multiplier
     return total
+
 
 
 
