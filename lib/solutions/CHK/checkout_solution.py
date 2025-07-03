@@ -47,9 +47,7 @@ PRICE_TABLE_AND_OFFERS = {
     "Z": {"price": 50, "offers": []},
 }
 
-BUY_N_SKUS_FOR_P = {
-    "skus": "STXYZ", "number": 3, "price": 45
-}
+BUY_N_SKUS_FOR_P = {"skus": "STXYZ", "number": 3, "price": 45}
 
 
 class CheckoutSolution:
@@ -85,8 +83,9 @@ def get_total_price(shopping_cart_dict):
         relevant_skus = {}
         if sku in BUY_N_SKUS_FOR_P["skus"]:
             if relevant_skus.get(sku):
-                relevant_skus["sku"] = {}
-
+                relevant_skus[sku]["quantity"] += 1
+            else:
+                relevant_skus[sku] = {"quantity": 1}
 
     # remove free items from cart
     for sku, number_of_items in shopping_cart_dict.items():
@@ -127,6 +126,7 @@ def get_total_price(shopping_cart_dict):
                     multiplier = multiplier % group_size
         total += PRICE_TABLE_AND_OFFERS[sku]["price"] * multiplier
     return total
+
 
 
 
