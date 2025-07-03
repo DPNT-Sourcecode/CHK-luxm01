@@ -66,9 +66,9 @@ class TestCheckout:
             ("VV", 90),
             ("VVV", 130),
             ("W", 20),
-            ("W", 20),
-            ("W", 20),
-            ("W", 20),
+            ("X", 90),
+            ("Y", 10),
+            ("Z", 50),
         ],
     )
     def test_checkout_no_error(self, skus, expected):
@@ -95,6 +95,7 @@ class TestCheckout:
     def test_validate_checkout_raises(self, sku):
         with pytest.raises(Exception):
             validate_checkout()
+
 
 
 
