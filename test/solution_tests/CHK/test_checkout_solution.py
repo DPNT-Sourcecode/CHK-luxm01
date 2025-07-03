@@ -39,6 +39,15 @@ class TestCheckout:
             ("FFFFFF", 40), # buy 6, pay for 4
             ("FFFFFFF", 50), # buy 7, pay for 5
             ("FFFFFFFF", 60), # buy 8, pay for 56
+            ("G": 20),
+            ("H": 10),
+            ("HHHHH": 45),
+            ("HHHHHHHHHH", 80),
+            ("I": 35),
+            ("J": 60),
+            ("K", 80),
+            ("KK", 150),
+            ("")
         ],
     )
     def test_checkout_no_error(self, skus, expected):
@@ -65,3 +74,4 @@ class TestCheckout:
     def test_validate_checkout_raises(self, sku):
         with pytest.raises(Exception):
             validate_checkout()
+
