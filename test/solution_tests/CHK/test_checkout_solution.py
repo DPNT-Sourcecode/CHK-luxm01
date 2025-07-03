@@ -4,7 +4,7 @@ import pytest
 
 class TestCheckout:
     @pytest.mark.parametrize(
-        "input, expected",
+        "skus, expected",
         [
             ("A", 50),
             # ("AA", 100),
@@ -25,7 +25,7 @@ class TestCheckout:
             # ("ABCDABCDABCDABCDABCD", 525),
         ],
     )
-    def test_checkout_doesnt_no_error(self, input, expected):
+    def test_checkout_doesnt_no_error(self, skus, expected):
         assert CheckoutSolution().checkout(input) == expected
 
     @pytest.mark.parametrize(
@@ -33,6 +33,7 @@ class TestCheckout:
         [
             ("E", -1),
             (1, -1),
+            ("ABCDE", -1),
         ],
     )
     def test_checkout_error(self, input, expected):
@@ -48,4 +49,5 @@ class TestCheckout:
     def test_validate_checkout_raises(self, input):
         with pytest.raises(Exception):
             validate_checkout()
+
 
