@@ -34,9 +34,9 @@ class TestCheckout:
     @pytest.mark.parametrize(
         "skus, expected",
         [
-            ("E", -1),
+            ("F", -1),
             (1, -1),
-            ("ABCDE", -1),
+            ("ABCDEF", -1),
         ],
     )
     def test_checkout_error(self, skus, expected):
@@ -52,6 +52,3 @@ class TestCheckout:
     def test_validate_checkout_raises(self, sku):
         with pytest.raises(Exception):
             validate_checkout()
-
-
-

@@ -23,14 +23,14 @@ class CheckoutSolution:
                     shopping_cart_dict[sku] = 1
             return get_total_price(shopping_cart_dict)
         except Exception as e:
-            print(f"********* FAILED WITH {e} *********")
+            print(f"\n\n********* FAILED WITH {e} *********\n\n")
             return -1
 
 
 def validate_checkout(sku):
-    valid_inputs = ["A", "B", "C", "D"]
+    valid_inputs = PRICE_TABLE_AND_OFFERS.keys()
     if sku not in valid_inputs:
-        raise Exception(f"Invalid input: {input}. Valid inputs = {valid_inputs}")
+        raise Exception(f"Invalid input: {sku}. Valid inputs = {valid_inputs}")
     return True
 
 
@@ -49,7 +49,3 @@ def get_total_price(shopping_cart_dict):
                     multiplier = multiplier % group_size
         total += PRICE_TABLE_AND_OFFERS[sku]["price"] * multiplier
     return total
-
-
-
-
