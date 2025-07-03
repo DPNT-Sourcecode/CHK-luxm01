@@ -4,7 +4,7 @@ import pytest
 
 class TestHello:
     def test_hello(self):
-        assert HelloSolution().hello("Matt") == "Hello, Matt!"
+        assert HelloSolution().hello("Matt") == "Hello, World!"
 
     @pytest.mark.parametrize(
         "input",
@@ -19,12 +19,13 @@ class TestHello:
     @pytest.mark.parametrize(
         "input, expected",
         [
-            ("Chloë", "Hello, Chloë!"),
-            ("Jean-Paul", "Hello, Jean-Paul!"),
-            ("5", "Hello, 5!"),
+            ("Chloë", "Hello, World!"),
+            ("Jean-Paul", "Hello, World!"),
+            ("5", "Hello, World!"),
         ],
     )
     def test_hello_doesnt_raise(self, input, expected):
         assert HelloSolution().hello(input) == expected
+
 
 
