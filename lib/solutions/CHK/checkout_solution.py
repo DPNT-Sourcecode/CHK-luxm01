@@ -13,26 +13,38 @@ PRICE_TABLE_AND_OFFERS = {
     "D": {"price": 15, "offers": []},
     "E": {"price": 40, "offers": [{"group_size": 2, "freebie": "B"}]},
     "F": {"price": 10, "offers": [{"group_size": 2, "freebie": "F"}]},
-    "G": {"price": 20}, "offers": [                     ]},
-    "H": {"price": 10}, "offers": [{"group_size": 10, "price_per_group": 80}, {"group_size": 5 , "price_per_group":  45}],
-    "I": {"price": 35}, "offers": [                     ]},
-    "J": {"price": 60}, "offers": [                     ]},
-    "K": {"price": 80}, "offers": [{"group_size": 2 , "price_per_group": 150}           ]},
-    "L": {"price": 90}, "offers": [                     ]},
-    "M": {"price": 15}, "offers": [                     ]},
-    "N": {"price": 40}, "offers": [{"group_size": 3, "freebie": "M"}    ]},
-    "O": {"price": 10}, "offers": [                     ]},
-    "P": {"price": 50}, "offers": [{"group_size": 5, "price_per_group": 200  }         ]},
-    "Q": {"price": 30}, "offers": [{"group_size": 3, "price_per_group": 80 }           ]},
-    "R": {"price": 50}, "offers": [{"group_size": 3, "freebie": "Q"  }   ]},
-    "S": {"price": 30}, "offers": [                     ]},
-    "T": {"price": 20}, "offers": [                     ]},
-    "U": {"price": 40}, "offers": [{"group_size": 3, "" U free }   ]},
-    "V": {"price": 50}, "offers": [{2V for 90, 3V for 130}]},
-    "W": {"price": 20}, "offers": [                     ]},
-    "X": {"price": 90}, "offers": [                     ]},
-    "Y": {"price": 10}, "offers": [                     ]},
-    "Z": {"price": 50}, "offers": [                     ]},
+    "G": {"price": 20, "offers": []},
+    "H": {
+        "price": 10,
+        "offers": [
+            {"group_size": 10, "price_per_group": 80},
+            {"group_size": 5, "price_per_group": 45},
+        ],
+    },
+    "I": {"price": 35, "offers": []},
+    "J": {"price": 60, "offers": []},
+    "K": {"price": 80, "offers": [{"group_size": 2, "price_per_group": 150}]},
+    "L": {"price": 90, "offers": []},
+    "M": {"price": 15, "offers": []},
+    "N": {"price": 40, "offers": [{"group_size": 3, "freebie": "M"}]},
+    "O": {"price": 10, "offers": []},
+    "P": {"price": 50, "offers": [{"group_size": 5, "price_per_group": 200}]},
+    "Q": {"price": 30, "offers": [{"group_size": 3, "price_per_group": 80}]},
+    "R": {"price": 50, "offers": [{"group_size": 3, "freebie": "Q"}]},
+    "S": {"price": 30, "offers": []},
+    "T": {"price": 20, "offers": []},
+    "U": {"price": 40, "offers": [{"group_size": 3, "freebie": "U"}]},
+    "V": {
+        "price": 50,
+        "offers": [
+            {"group_size": 3, "price_per_group": 130},
+            {"group_size": 2, "price_per_group": 90},
+        ],
+    },
+    "W": {"price": 20, "offers": []},
+    "X": {"price": 90, "offers": []},
+    "Y": {"price": 10, "offers": []},
+    "Z": {"price": 50, "offers": []},
 }
 
 
@@ -103,6 +115,7 @@ def get_total_price(shopping_cart_dict):
                     multiplier = multiplier % group_size
         total += PRICE_TABLE_AND_OFFERS[sku]["price"] * multiplier
     return total
+
 
 
 
