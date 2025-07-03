@@ -48,4 +48,3 @@ class TestCheckout:
     def test_validate_checkout_raises(self, input):
         with pytest.raises(Exception):
             validate_checkout()
-
