@@ -14,7 +14,15 @@ class TestCheckout:
             ("B", 30),
             ("BB", 45),
             ("BBB", 75),
-            
+            ("C", 20),
+            ("CC", 40),
+            ("CCC", 60),
+            ("D", 15),
+            ("DD", 30),
+            ("DDD", 45),
+            ("ABC", 100),
+            ("ABAAD", 175),
+            ("ABCDABCDABCDABCDABCD", 230+120+100+)
         ],
     )
     def test_checkout_doesnt_raise(self, input, expected):
@@ -30,6 +38,7 @@ class TestCheckout:
         # unhappy path returns -1
         with pytest.raises(Exception):
             CheckoutSolution().checkout(input)
+
 
 
 
